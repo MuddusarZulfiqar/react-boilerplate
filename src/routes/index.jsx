@@ -7,6 +7,7 @@ const Logout = React.lazy(() => import("@/views/protected/Logout"));
 import AuthLayout from "../layout/AuthLayout";
 import { Suspense } from "react";
 import NonRequiredAuth from "@/layout/NonRequiredAuth";
+import FormView from "../views/public/Form";
 const Routes = () => {
   const { user } = useAuth();
 
@@ -27,6 +28,14 @@ const Routes = () => {
         {
           path: "/about-us",
           element: <div>About Us Page</div>,
+        },
+        {
+          path: "/form",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <FormView />
+            </Suspense>
+          ),
         },
       ],
     },

@@ -3,5 +3,11 @@
   text-align: left;
 }
 
-
-
+.active-item {
+  background-color: #646cff;
+  color: #f1f1f1;
+  &:hover{
+    background-color: #646cff;
+    color: #f1f1f1;
+  }
+}

@@ -7,7 +7,7 @@ import "nprogress/nprogress.css";
 import ErrorBoundary from "@/components/core/ErrorBoundary.jsx";
 import "./index.css";
 import { ThemeProvider } from "@mui/material";
-import theme from "@/utils/theme";
+import { theme } from "@/utils";
 import CssBaseline from "@mui/material/CssBaseline";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

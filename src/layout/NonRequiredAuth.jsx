@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, NavLink } from "react-router-dom";
 import * as styles from "./styles/NonRequiredAuth.module.css";
 import { useAuth } from "@/providers/authProvider";
 function NonRequiredAuth() {
@@ -9,19 +9,60 @@ function NonRequiredAuth() {
         <nav>
           <ul className={styles.nav}>
             <li>
-              <Link to="/" className={styles.list_item}>
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending " + styles.list_item
+                    : isActive
+                    ? "active-item " + styles.list_item
+                    : "" + styles.list_item
+                }
+              >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/about-us" className={styles.list_item}>
+              <NavLink
+                to="/about-us"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending " + styles.list_item
+                    : isActive
+                    ? "active-item " + styles.list_item
+                    : "" + styles.list_item
+                }
+              >
                 About
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="contact" className={styles.list_item}>
+              <NavLink
+                to="contact"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending " + styles.list_item
+                    : isActive
+                    ? "active-item " + styles.list_item
+                    : "" + styles.list_item
+                }
+              >
                 Contact
-              </Link>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="form"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending " + styles.list_item
+                    : isActive
+                    ? "active-item " + styles.list_item
+                    : "" + styles.list_item
+                }
+              >
+                Form
+              </NavLink>
             </li>
             {user?.user ? (
               <li>
