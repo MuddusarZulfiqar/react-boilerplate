@@ -1,8 +1,8 @@
-const apoRoutes = {
+const apiRoutes = {
   auth: {
     login: "/auth/login",
     register: "/auth/register",
   },
 };
 
-export default apoRoutes;
+export default apiRoutes;
