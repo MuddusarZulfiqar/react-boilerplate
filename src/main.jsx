@@ -9,14 +9,18 @@ import "./index.css";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@/utils";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Provider } from "react-redux";
+import { store } from "@/app/store";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <ErrorBoundary>
-        <App />
-        <CssBaseline />
-      </ErrorBoundary>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <ErrorBoundary>
+          <App />
+          <CssBaseline />
+        </ErrorBoundary>
+      </ThemeProvider>
+    </Provider>
     <ToastContainer />
   </React.StrictMode>
 );

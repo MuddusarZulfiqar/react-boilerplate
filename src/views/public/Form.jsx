@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import { FirstFromValidation } from "@/utils";
+import { Counter } from "@/features/counter/Counter";
 function FormView() {
   const initialValue = {
     name: "",
@@ -32,6 +33,7 @@ function FormView() {
   };
   return (
     <Container>
+      <Counter />
       <Formik
         initialValues={initialValue}
         validationSchema={FirstFromValidation}
@@ -61,6 +63,7 @@ function FormView() {
                 label="Email"
                 type="Email"
                 name="email"
+                autocomplete="off"
                 fullWidth
                 variant="outlined"
                 margin="dense"
