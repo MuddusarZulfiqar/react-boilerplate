@@ -4,9 +4,10 @@ import "./App.scss";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { config } from "@/constants";
+
 function App() {
   useEffect(() => {
-    document.title = "React App";
+    document.title = config.APP_NAME;
   }, []);
   return (
     <div className="app">
