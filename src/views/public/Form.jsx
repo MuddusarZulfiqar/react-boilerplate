@@ -16,7 +16,13 @@ import {
 import { Container, Stack } from "@mui/system";
 import { FirstFromValidation } from "@/utils";
 import { Counter } from "@/features/counter/Counter";
+import styled from "@emotion/styled";
 function FormView() {
+  const AppBar = styled("div")(({ theme }) => ({
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  }));
+
   const initialValue = {
     name: "",
     email: "",
@@ -34,6 +40,10 @@ function FormView() {
   return (
     <Container>
       <Counter />
+      <AppBar>
+        <h1>Formik Form</h1>
+      </AppBar>
+
       <Formik
         initialValues={initialValue}
         validationSchema={FirstFromValidation}

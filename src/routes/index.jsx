@@ -1,13 +1,13 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { useAuth } from "../providers/authProvider";
+import { useAuth } from "@/providers/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 const Login = React.lazy(() => import("@/views/Login"));
 const Logout = React.lazy(() => import("@/views/protected/Logout"));
-import AuthLayout from "../layout/AuthLayout";
+import AuthLayout from "@/layout/AuthLayout";
 import { Suspense } from "react";
 import NonRequiredAuth from "@/layout/NonRequiredAuth";
-import FormView from "../views/public/Form";
+import FormView from "@/views/public/Form";
 const Routes = () => {
   const { user } = useAuth();
 

@@ -1,5 +1,5 @@
 const config = {
-  API_URL: "",
+  API_URL: "https://jsonplaceholder.typicode.com",
   APP_NAME: "My App",
   APP_DESCRIPTION: "MY APP DESCRIPTION",
   APP_KEYWORDS: "MY APP KEYWORDS",
