@@ -3,20 +3,30 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  // State to hold the authentication token
-  const [user, setUser_] = useState(localStorage.getItem("token"));
+  // State to hold the authentication token and user data
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("token");
+    if (storedUser) {
+      return JSON.parse(storedUser);
+    }
+    return null;
+  });
 
-  // Function to set the authentication token
-  const setUser = (userData) => {
-    setUser_(userData);
+  // Function to set the authentication token and user data
+  const updateUser = (userData) => {
+    if (userData) {
+      console.log(userData);
+      setUser(userData.user);
+      localStorage.setItem("token", JSON.stringify(userData?.token));
+    } else {
+      setUser(null);
+      localStorage.removeItem("token");
+    }
   };
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem("token", user);
-    } else {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+    if (user && user.token) {
+      localStorage.setItem("token", user.token);
     }
   }, [user]);
 
@@ -24,7 +34,7 @@ const AuthProvider = ({ children }) => {
   const contextValue = useMemo(
     () => ({
       user,
-      setUser,
+      setUser: updateUser, // Use the updated function
     }),
     [user]
   );

@@ -8,6 +8,7 @@ const Logout = () => {
   const handleLogout = () => {
     setUser(null);
     navigate("/auth/login", { replace: true });
+    localStorage.removeItem("token");
   };
 
   setTimeout(() => {

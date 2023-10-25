@@ -13,6 +13,7 @@ const Login = () => {
         name: "John Doe",
         email: "",
       },
+      token: "1234567890",
     });
     navigate("/dashboard", { replace: true });
   };
