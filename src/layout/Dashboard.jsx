@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import style from "./styles/Dashboard.module.css";
 import { motion } from "framer-motion";
 import { animation } from "@/constants";
@@ -13,30 +13,32 @@ function Dashboard() {
         <nav className={style.nav}>
           <ul>
             <li>
-              <Link
+              <NavLink
                 to={{
                   pathname: "/dashboard",
                   state: {
                     from: "dashboard",
                   },
                 }}
+                end // end prop is used to match the path exactly
                 className={style["nav-list"]}
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to={{
                   pathname: "/dashboard/profile",
                   state: {
                     from: "dashboard",
                   },
                 }}
+                end
                 className={style["nav-list"]}
               >
                 Profile
-              </Link>
+              </NavLink>
             </li>
             <li>
               <Link

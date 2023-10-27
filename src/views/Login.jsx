@@ -12,6 +12,7 @@ const Login = () => {
       user: {
         name: "John Doe",
         email: "",
+        role: "admin",
       },
       token: "1234567890",
     });

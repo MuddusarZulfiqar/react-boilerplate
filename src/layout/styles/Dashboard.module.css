@@ -42,6 +42,10 @@
     background: #fefefe;
     margin-bottom: 15px;
 }
+.active {
+    background: #1a1a1a;
+    color: #fff;
+}
 .section {
     padding: 10px;
     background-color: #fefefe;

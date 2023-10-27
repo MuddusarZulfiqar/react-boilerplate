@@ -8,9 +8,11 @@ import AuthLayout from "@/layout/AuthLayout";
 import { Suspense } from "react";
 import NonRequiredAuth from "@/layout/NonRequiredAuth";
 import FormView from "@/views/public/Form";
+import AllowRole from "./AllowRole";
+
 const Routes = () => {
   const { user } = useAuth();
-
+  console.log(user);
   // Define public routes accessible to all users
   const routesForPublic = [
     {
@@ -44,23 +46,50 @@ const Routes = () => {
   // Define routes accessible only to authenticated users
   const routesForAuthenticatedOnly = [
     {
-      path: "/",
+      path: "/dashboard",
       element: <ProtectedRoute />, // Wrap the component in ProtectedRoute
       children: [
         {
-          path: "/dashboard",
-          element: <div>User Home Page</div>,
+          path: "",
+          element: <AllowRole roles={["admin"]} user={user} />,
+          children: [
+            {
+              path: "",
+              element: <div>Dashboard</div>,
+            },
+          ],
         },
+
         {
-          path: "/dashboard/profile",
+          path: "profile",
           element: <div>User Profile</div>,
+          meta: {
+            roles: ["admin", "user"],
+          },
         },
         {
-          path: "/dashboard/logout",
+          path: "logout",
           element: (
             <Suspense fallback={<div>Loading...</div>}>
               <Logout />
             </Suspense>
+          ),
+        },
+
+        // Dashboard 404 route
+        {
+          path: "/dashboard/*",
+          element: (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <h1>Ops Page Not Found</h1>
+            </div>
           ),
         },
       ],
@@ -103,6 +132,22 @@ const Routes = () => {
           }}
         >
           <h1>404 Page Not Found!</h1>
+        </div>
+      ),
+    },
+    // 403 Forbidden route
+    {
+      path: "/403",
+      element: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <h1>403 Forbidden!</h1>
         </div>
       ),
     },

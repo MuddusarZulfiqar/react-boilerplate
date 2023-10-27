@@ -10,4 +10,8 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  // proxy set
+  server: {
+    port: 3000,
+  },
 });

@@ -15,12 +15,13 @@ const AuthProvider = ({ children }) => {
   // Function to set the authentication token and user data
   const updateUser = (userData) => {
     if (userData) {
-      console.log(userData);
       setUser(userData.user);
       localStorage.setItem("token", JSON.stringify(userData?.token));
+      localStorage.setItem("user", JSON.stringify(userData?.user));
     } else {
       setUser(null);
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   };
 

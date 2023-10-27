@@ -1,4 +1,3 @@
-import React from "react";
 import HomePage from "@/components/views/home";
 function Home() {
   return <HomePage />;

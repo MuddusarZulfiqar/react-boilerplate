@@ -3,6 +3,7 @@ import * as styles from "./styles/NonRequiredAuth.module.css";
 import { useAuth } from "@/providers/authProvider";
 function NonRequiredAuth() {
   const { user } = useAuth();
+  console.log(user);
   return (
     <>
       <header className={styles.header}>
@@ -64,7 +65,7 @@ function NonRequiredAuth() {
                 Form
               </NavLink>
             </li>
-            {user?.user ? (
+            {user?.name ? (
               <li>
                 <Link to="dashboard" className={styles.list_item}>
                   Dashboard
