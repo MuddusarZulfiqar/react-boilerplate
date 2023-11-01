@@ -1,0 +1,182 @@
+$col-gap-list: 10, 20, 30, 40, 50, 60, 70, 80, 90;
+$margines-list: 5, 10, 15, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90;
+@each $item in $margines-list {
+	.mb-#{$item} {
+		margin-bottom: #{$item}px !important;
+	}
+	.mt-#{$item} {
+		margin-top: #{$item}px !important;
+	}
+	.pb-#{$item} {
+		padding-bottom: #{$item}px !important;
+	}
+	.pt-#{$item} {
+		padding-top: #{$item}px !important;
+	}
+}
+
+@each $item in $col-gap-list {
+	.col-gap-#{$item} {
+		margin-left: calc((#{$item}px/2) * -1) !important;
+		margin-right: calc((#{$item}px/2) * -1) !important;
+	}
+	.col-gap-#{$item} > div {
+		padding-left: calc(#{$item}px/2) !important;
+		padding-right: calc(#{$item}px/2) !important;
+	}
+}
+
+$data-gap-list: 0, 2, 3, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
+	60, 70;
+@each $item in $data-gap-list {
+	[data-item-gap='#{$item}'] {
+		--grid-item-gap: #{$item}px;
+	}
+}
+
+[data-grid-item-width='30'] {
+	--grid-item-width: calc(30px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='50'] {
+	--grid-item-width: calc(50px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='100'] {
+	--grid-item-width: calc(100px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='125'] {
+	--grid-item-width: calc(125px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='150'] {
+	--grid-item-width: calc(150px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='200'] {
+	--grid-item-width: calc(200px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='230'] {
+	--grid-item-width: calc(230px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='250'] {
+	--grid-item-width: calc(250px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='300'] {
+	--grid-item-width: calc(300px - var(--grid-item-gap));
+}
+
+[data-grid-item-width='1/2'] {
+	--grid-item-width: calc((100% / 2) - var(--grid-item-gap));
+}
+
+[data-grid-item-width='1/3'] {
+	--grid-item-width: calc((100% / 3) - var(--grid-item-gap));
+}
+
+[data-grid-item-width='1/4'] {
+	--grid-item-width: calc((100% / 4) - var(--grid-item-gap));
+}
+
+[data-grid-item-width='1/5'] {
+	--grid-item-width: calc((100% / 5) - var(--grid-item-gap));
+}
+
+@media (min-width: 576px) {
+	[data-grid-item-width-sm='1/2'] {
+		--grid-item-width: calc((100% / 2) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-sm='1/3'] {
+		--grid-item-width: calc((100% / 3) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-sm='1/4'] {
+		--grid-item-width: calc((100% / 4) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-sm='1/5'] {
+		--grid-item-width: calc((100% / 5) - var(--grid-item-gap));
+	}
+}
+
+@media (min-width: 768px) {
+	[data-grid-item-width-md='1/2'] {
+		--grid-item-width: calc((100% / 2) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-md='1/3'] {
+		--grid-item-width: calc((100% / 3) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-md='1/4'] {
+		--grid-item-width: calc((100% / 4) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-md='1/5'] {
+		--grid-item-width: calc((100% / 5) - var(--grid-item-gap));
+	}
+}
+
+@media (min-width: 992px) {
+	[data-grid-item-width-lg='1/2'] {
+		--grid-item-width: calc((100% / 2) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-lg='1/3'] {
+		--grid-item-width: calc((100% / 3) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-lg='1/4'] {
+		--grid-item-width: calc((100% / 4) - var(--grid-item-gap));
+	}
+	[data-grid-item-width-lg='1/5'] {
+		--grid-item-width: calc((100% / 5) - var(--grid-item-gap));
+	}
+}
+
+//Container
+.container-md {
+	max-width: 1040px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 15px;
+	padding-left: 15px;
+	@media screen and (max-width: 1200px) {
+		max-width: 960px;
+	}
+	@media screen and (max-width: 991px) {
+		max-width: 720px;
+	}
+	@media screen and (max-width: 767px) {
+		max-width: 540px;
+	}
+	@media screen and (max-width: 567px) {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+.grid {
+	//--grid-item-gap: rem(15px);
+	display: grid;
+	display: -moz-grid;
+	display: -ms-grid;
+	grid-gap: var(--grid-item-gap);
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(var(--grid-item-width), 1fr)
+	);
+}
+
+
+
+.abs-link {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 9;
+	color: transparent;
+	font-size: 0;
+	text-indent: -2px;
+}
+
+//header dropdown animation

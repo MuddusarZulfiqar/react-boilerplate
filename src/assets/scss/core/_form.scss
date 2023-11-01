@@ -1,0 +1,48 @@
+//toggler swtich css
+.checkbox--switch {
+	> input[type='checkbox'] {
+		display: none;
+		&:checked {
+			+ label {
+				&:before {
+					background: #89201a;
+				}
+				&:after {
+					background: #fff;
+					left: 28px;
+				}
+			}
+		}
+	}
+	> label {
+		cursor: pointer;
+		height: 0px;
+		position: relative;
+		top: -7px;
+		width: 45px;
+		&::before {
+			background: #f0f0f0;
+			box-shadow: unset;
+			border-radius: 50px;
+			content: '';
+			height: 39px;
+			margin-top: -8px;
+			position: absolute;
+			transition: all 0.4s ease-in-out;
+			width: 65px;
+		}
+		&::after {
+			background: rgb(255, 255, 255);
+			border-radius: 16px;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+			content: '';
+			height: 36px;
+			left: 3px;
+			position: absolute;
+			top: -6px;
+			transition: all 0.3s ease-in-out;
+			width: 36px;
+			border-radius: 50px;
+		}
+	}
+}

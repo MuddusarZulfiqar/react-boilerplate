@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { ToastContainer } from "react-toastify";
@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "nprogress/nprogress.css";
 import ErrorBoundary from "@/components/core/ErrorBoundary.jsx";
 import "./index.css";
+import "@/assets/scss/styles.scss";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@/utils";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,7 +19,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ThemeProvider theme={theme}>
         <ErrorBoundary>
           <AuthProvider>
-            <App />
+            <Profiler
+              id="App"
+              onRender={(id, phase, actualDuration) => {
+                console.log({ id, phase, actualDuration });
+              }}
+            >
+              <App />
+            </Profiler>
           </AuthProvider>
           <CssBaseline />
         </ErrorBoundary>

@@ -1,0 +1,39 @@
+:root{
+    --primary: #003160;
+    --secondary: #0082ff;
+    --lightblue: #256089;
+    --textcolor: #515151;
+    --bg: #f2f7ff;
+}
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: rem(16px);
+    font-family: $primary-font;
+    color: var(--textcolor);
+    line-height: 1;
+    margin: 0;
+    overflow-x: hidden;
+    font-weight: 400;
+    background:var(--bg);
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1300px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    html {
+        font-size: 80%;
+    }
+}

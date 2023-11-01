@@ -1,0 +1,105 @@
+@import 'functions';
+
+// @font-face {
+// 	font-family: 'fontinregular';
+// 	src: url('../fonts/fontin/fontin-regular-webfont.woff2') format('woff2'),
+// 		url('../fonts/fontin/fontin-regular-webfont.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'fontinbold';
+// 	src: url('../fonts/fontin/fontin-bold-webfont.woff2') format('woff2'),
+// 		url('../fonts/fontin/fontin-bold-webfont.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'fontinitalic';
+// 	src: url('../fonts/fontin-italic-webfont.woff2') format('woff2'),
+// 		url('../fonts/fontin-italic-webfont.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+
+// @font-face {
+// 	font-family: 'helveticaneueltarabic';
+// 	src: url('../fonts/helvatic-arabic-new/helveticaneueltarabic.eot');
+// 	src: url('../fonts/helvatic-arabic-new/helveticaneueltarabic.eot')
+// 			format('embedded-opentype'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.woff2')
+// 			format('woff2'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.woff')
+// 			format('woff'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.ttf')
+// 			format('truetype'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.svg#helveticaneueltarabic')
+// 			format('svg');
+// }
+
+// Theme Colors
+
+$default: #303030;
+$primary: #1c5a84;
+$secondary: #0082ff;
+$text-color: #1c1c1c;
+$link-color: #ffffff;
+$link-hover: #000000;
+
+// Fonts
+
+$primary-font: 'Raleway', sans-serif;
+$primary-font-b: 'Raleway', sans-serif;
+$time-new-roman: 'Times New Roman', 'serif';
+$arabic-font: '';
+
+//** Primary Font
+
+// font sizes
+$h--1: (
+	base: rem(24px),
+	mobile: rem(20px),
+	tablet: rem(22px),
+	wide: rem(24px),
+);
+$h--2: (
+	base: rem(35px),
+	mobile: rem(18px),
+	tablet: rem(20px),
+	wide: rem(35px),
+);
+$h--3: (
+	base: rem(24px),
+	mobile: rem(16px),
+	tablet: rem(18px),
+	wide: rem(18px),
+);
+
+$h--4: (
+	base: rem(16px),
+	mobile: rem(14px),
+	tablet: rem(15px),
+	wide: rem(16px),
+);
+$h--5: (
+	base: rem(24px),
+	mobile: rem(20px),
+	tablet: rem(22px),
+	wide: rem(24px),
+);
+$h--6: (
+	base: rem(24px),
+	mobile: rem(20px),
+	tablet: rem(22px),
+	wide: rem(24px),
+);
+$p: rem(16px);
+$p--large: rem(20px);
+$p--medium: rem(16px);
+$p--small: rem(12px);
+
+$breakpoints: (
+	mobile: 414px,
+	tablet: 991px,
+	wide: 1300px,
+) !default;

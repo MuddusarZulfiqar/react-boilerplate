@@ -17,11 +17,9 @@ const AuthProvider = ({ children }) => {
     if (userData) {
       setUser(userData.user);
       localStorage.setItem("token", JSON.stringify(userData?.token));
-      localStorage.setItem("user", JSON.stringify(userData?.user));
     } else {
       setUser(null);
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
     }
   };
 

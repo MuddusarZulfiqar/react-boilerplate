@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import { FirstFromValidation } from "@/utils";
-import { Counter } from "@/features/counter/Counter";
 import styled from "@emotion/styled";
 function FormView() {
   const AppBar = styled("div")(({ theme }) => ({
@@ -39,7 +38,6 @@ function FormView() {
   };
   return (
     <Container>
-      <Counter />
       <AppBar>
         <h1>Formik Form</h1>
       </AppBar>

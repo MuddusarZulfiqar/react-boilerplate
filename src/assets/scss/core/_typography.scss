@@ -1,0 +1,117 @@
+/*
+
+	Basic, low level typography
+
+*/
+a {
+	color: $primary;
+    transition: all 0.5s ease;
+	&:hover {
+		color: $secondary !important;
+	}
+	&:focus {
+		outline: none;
+	}
+}
+$typography-elems: 'ul', 'ol';
+
+$media-elems: '.blockquote', '.button-wrapper', '.media', '.table-wrapper';
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-family: $primary-font-b;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	margin-top: 1rem;
+	line-height: 1;
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+h1 {
+	@include font-size($h--1);
+	color: var(--primary);
+	margin-bottom: unset;
+}
+
+h2 {
+	@include font-size($h--2);
+	color: var(--primary);
+	margin-bottom: unset;
+	font-weight: bold;
+}
+
+h3 {
+	@include font-size($h--3);
+	font-weight: 600;
+}
+
+h4 {
+	@include font-size($h--4);
+	font-weight: 700;
+}
+
+h5 {
+	@include font-size($h--5);
+}
+
+h6 {
+	@include font-size($h--6);
+	margin-bottom: rem(30px);
+}
+
+p {
+	font-size: $p;
+	margin: 0 0 rem(20px) 0;
+	line-height: 1.5;
+	font-family: $primary-font;
+}
+
+// Basic typography styling
+#{$typography-elems},
+#{$media-elems} {
+	margin-bottom: 1rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+ol,
+ul {
+	padding: 0;
+	margin: 0;
+	// list-style:none;
+}
+
+// Stylistic elements
+b,
+strong {
+	font-weight: 700;
+}
+
+.text-primary{
+    color: var(--primary) !important;
+}
+.text-primary-light{
+    color: #1c5a84 !important;
+}
+.text-secondary{
+    color: var(--secondary) !important;
+}
+.text-gray{
+    color: #575757 !important;
+}

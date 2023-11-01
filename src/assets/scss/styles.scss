@@ -1,0 +1,22 @@
+@import 'import';
+
+.Toastify .Toastify__toast div:first-child div:last-child {
+	text-align: left;
+  }
+  
+  .active-item {
+	background-color: #646cff;
+	color: #f1f1f1;
+	&:hover{
+	  background-color: #646cff;
+	  color: #f1f1f1;
+	}
+  }
+  
+  body, html {
+	overflow-x: hidden !important;
+  }
+
+  .circle {
+	@include circle(100px, #fff);
+  }
