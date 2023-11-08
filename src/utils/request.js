@@ -9,6 +9,7 @@ import { config } from "../constants";
 const request = axios.create({
   baseURL: config.API_URL,
   timeout: config.API_TIMEOUT,
+  withCredentials: true,
 });
 
 request.interceptors.request.use(
@@ -16,6 +17,7 @@ request.interceptors.request.use(
     config.headers.Authorization = localStorage.getItem("token")
       ? `Bearer ${localStorage.getItem("token")}`
       : "";
+    // config.headers.Cookie = document.cookie;
     NProgress.start();
     return config;
   },
@@ -33,11 +35,11 @@ request.interceptors.response.use(
   },
   (error) => {
     NProgress.done();
-    if (error?.response?.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.reload();
-    }
+    // if (error?.response?.status === 401) {
+    //   localStorage.removeItem("token");
+    //   localStorage.removeItem("user");
+    //   window.location.reload();
+    // }
     return Promise.reject(error);
   }
 );

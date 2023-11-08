@@ -6,12 +6,12 @@
 a {
 	color: $primary;
     transition: all 0.5s ease;
-	&:hover {
-		color: $secondary !important;
-	}
-	&:focus {
-		outline: none;
-	}
+	// &:hover {
+	// 	color: $secondary !important;
+	// }
+	// &:focus {
+	// 	outline: none;
+	// }
 }
 $typography-elems: 'ul', 'ol';
 

@@ -1,22 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/authProvider";
 import { Button } from "@mui/material";
+import request from "../utils/request";
 // import { useTheme } from "@mui/material/styles";
 
 const Login = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
   // const theme = useTheme();
-  const handleLogin = () => {
-    setUser({
-      user: {
-        name: "John Doe",
-        email: "",
-        role: "admin",
-      },
-      token: "1234567890",
-    });
-    navigate("/dashboard", { replace: true });
+  const handleLogin = async () => {
+    try {
+      const response = await request.post("/auth/login", {
+        email: "muddusar.zulfiqar@purelogics.net",
+        password: "12345",
+      });
+      console.log(response);
+      setUser({
+        user: {
+          name: "John Doe",
+          email: "",
+          role: "admin",
+        },
+        token: response.data.token,
+      });
+      navigate("/dashboard", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
