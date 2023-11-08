@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import { config } from "@/constants";
 import { CircularProgress } from "@mui/material";
 import { Suspense } from "react";
+import request from "./utils/request";
+import Cookies from "js-cookie";
 function App() {
   const [loading, setLoading] = useState(true);
   const { setUser } = useAuth();
@@ -12,24 +14,19 @@ function App() {
     document.title = config.APP_NAME;
   }, []);
 
-  const getUser = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          user: {
-            name: "John Doe",
-            email: "test@gmail.com",
-            role: "admin",
-          },
-          token: "1234567890",
-        });
-      }, 3000);
-    });
+  const getUser = async () => {
+    try {
+      const response = await request.get("/user/me");
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     if (window) {
       setLoading(true);
-      if (localStorage.getItem("token")) {
+      if (Cookies.get("token")) {
         getUser().then((res) => {
           setUser(res);
           setLoading(false);

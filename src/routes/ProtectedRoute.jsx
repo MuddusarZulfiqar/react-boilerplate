@@ -3,6 +3,7 @@ import { useAuth } from "@/providers/authProvider";
 import Dashboard from "@/layout/Dashboard";
 export const ProtectedRoute = () => {
   const { user } = useAuth();
+
   console.log(user);
   // Check if the user is authenticated
   if (!user) {
