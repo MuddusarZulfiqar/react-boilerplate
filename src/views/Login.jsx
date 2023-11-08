@@ -8,25 +8,15 @@ const Login = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
   // const theme = useTheme();
-  const handleLogin = async () => {
-    try {
-      const response = await request.post("/auth/login", {
-        email: "muddusar.zulfiqar@purelogics.net",
-        password: "12345",
-      });
-      console.log(response);
-      setUser({
-        user: {
-          name: "John Doe",
-          email: "",
-          role: "admin",
-        },
-        token: response.data.token,
-      });
-      navigate("/dashboard", { replace: true });
-    } catch (error) {
-      console.log(error);
-    }
+  const handleLogin = () => {
+    setUser({
+      user: {
+        name: "John Doe",
+        email: "",
+      },
+      token: "1234567890",
+    });
+    navigate("/dashboard", { replace: true });
   };
 
   return (
