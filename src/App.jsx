@@ -1,12 +1,11 @@
-import { useAuth } from "./providers/authProvider";
-import Routes from "./routes";
+import { useAuth } from "@/providers/authProvider";
+import Routes from "@/routes";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { config } from "@/constants";
 import { CircularProgress } from "@mui/material";
 import { Suspense } from "react";
-import request from "./utils/request";
-import Cookies from "js-cookie";
+import request from "@/utils/request";
 function App() {
   const [loading, setLoading] = useState(true);
   const { setUser } = useAuth();
@@ -26,9 +25,9 @@ function App() {
   useEffect(() => {
     if (window) {
       setLoading(true);
-      if (Cookies.get("token")) {
+      if (localStorage.getItem("token")) {
         getUser().then((res) => {
-          setUser(res);
+          setUser(res.user);
           setLoading(false);
         });
       } else {

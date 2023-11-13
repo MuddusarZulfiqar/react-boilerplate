@@ -49,7 +49,7 @@ const Routes = () => {
       children: [
         {
           path: "",
-          element: <AllowRole roles={[roles.user, roles.admin]} />,
+          element: <AllowRole roles={[roles.admin, roles.user]} />,
           children: [
             {
               path: "",

@@ -6,8 +6,9 @@ function AllowRole({ roles }) {
   console.log(user);
   if (user && roles.includes(user.role)) {
     return <Outlet />;
+  } else {
+    return <Navigate to="/403" />;
   }
-  return <Navigate to="/403" />;
 }
 
 export default AllowRole;

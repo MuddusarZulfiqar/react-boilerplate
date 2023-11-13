@@ -7,7 +7,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("token");
     if (storedUser) {
-      return JSON.parse(storedUser);
+      return storedUser;
     }
     return null;
   });
@@ -24,17 +24,18 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (user && user.token) {
-      localStorage.setItem("token", user.token);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user && user.token) {
+  //     localStorage.setItem("token", user.token);
+  //   }
+  // }, [user]);
 
   // Memoized value of the authentication context
   const contextValue = useMemo(
     () => ({
       user,
       setUser,
+      updateUser,
     }),
     [user]
   );
