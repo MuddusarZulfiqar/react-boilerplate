@@ -2,13 +2,13 @@ import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { roles } from "@/utils";
 import { useAuth } from "@/providers/authProvider";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedRoute } from "./includes/ProtectedRoute";
 const Login = React.lazy(() => import("@/views/Login"));
 const Logout = React.lazy(() => import("@/views/protected/Logout"));
 import AuthLayout from "@/layout/AuthLayout";
 import NonRequiredAuth from "@/layout/NonRequiredAuth";
 import FormView from "@/views/public/Form";
-import AllowRole from "./AllowRole";
+import AllowRole from "./includes/AllowRole";
 import Forbidden from "../views/errors/403";
 import PageNotFound from "../views/errors/404";
 

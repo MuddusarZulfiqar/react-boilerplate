@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../providers/authProvider";
+import { useAuth } from "../../providers/authProvider";
 
 function AllowRole({ roles }) {
   const { user } = useAuth();
