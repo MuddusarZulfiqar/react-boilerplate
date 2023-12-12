@@ -28,7 +28,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <App />
             </Profiler>
           </AuthProvider>
-          <CssBaseline />
+          <CssBaseline enableColorScheme />
+          {/* <GlobalStyles styles={{ }} /> */}
         </ErrorBoundary>
       </ThemeProvider>
     </Provider>

@@ -21,6 +21,9 @@ const theme = createTheme({
       return `${value / 16}rem`;
     },
   },
+  components: {
+    MuiButton: {},
+  },
 });
 
 export default theme;

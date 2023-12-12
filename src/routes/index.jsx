@@ -14,7 +14,6 @@ import PageNotFound from "../views/errors/404";
 
 const Routes = () => {
   const { user } = useAuth();
-  console.log(user);
   // Define public routes accessible to all users
   const routesForPublic = [
     {
@@ -100,7 +99,7 @@ const Routes = () => {
   const router = createBrowserRouter([
     ...routesForPublic,
     ...(!user ? routesForNotAuthenticatedOnly : []),
-    ...routesForAuthenticatedOnly,
+    ...(user ? routesForAuthenticatedOnly : []),
     // Fallback route
     {
       path: "*",
