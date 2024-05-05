@@ -1,46 +1,44 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../providers/authProvider";
-import { Button } from "@mui/material";
-import request from "../utils/request";
+import {useNavigate} from "react-router-dom";
+import {Button} from "@mui/material";
+import {useState} from "react";
+import {loginRequest} from "@/services/auth";
+import {QueryClient, useMutation} from "@tanstack/react-query";
 // import { useTheme } from "@mui/material/styles";
 
 const Login = () => {
-  const { setUser } = useAuth();
-  const navigate = useNavigate();
-  // const theme = useTheme();
-  const handleLogin = async () => {
-    try {
-      const response = await request.post("/auth/login", {
-        email: "muddusar.zulfiqar@purelogics.net",
-        password: "12345",
-      });
-      // console.log(response);
-      localStorage.setItem("token", response.data.token);
-      setUser({
-        token: response.data.token,
-        ...response.data.user,
-      });
-      navigate("/dashboard", { replace: true });
-    } catch (error) {
-      console.log(error);
-    }
-    // setUser({
-    //   user: {
-    //     name: "John Doe",
-    //     email: "",
-    //   },
-    //   token: "1234567890",
-    // });
-    // navigate("/dashboard", { replace: true });
-  };
+    const queryClient = new QueryClient();
+    const [userData] = useState({email: "stephen+dev@hellocustom.io", password: "Allah@123"});
+    const navigate = useNavigate();
+    const {error, isPending, mutate} = useMutation({
+        mutationFn: loginRequest,
+        onSuccess: (data) => {
+            localStorage.setItem("token", data?.token);
+            navigate("/dashboard");
+            queryClient.setQueryData(['user'], data)
+        },
+        onError: (error) => {
+            console.error(error);
+        },
+    })
 
-  return (
-    <>
-      <Button variant="contained" color="secondary" onClick={handleLogin}>
-        Login
-      </Button>
-    </>
-  );
+    if (error) {
+        return (<>
+                <div>An error has occurred: {error?.message}</div>
+            </>
+        );
+    }
+    return (
+        <>
+            <Button variant="contained" color="secondary" disabled={
+                isPending
+            } onClick={() => {
+                mutate(userData)
+            }}
+            >
+                Login
+            </Button>
+        </>
+    );
 };
 
 export default Login;

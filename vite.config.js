@@ -13,7 +13,7 @@ export default defineConfig({
     },
     // proxy set
     server: {
-        port: 8080,
+        port: 3000,
     },
 
     // scss variables set
