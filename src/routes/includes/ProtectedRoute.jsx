@@ -1,10 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "@/providers/authProvider";
 import Dashboard from "@/layout/Dashboard";
+import useAuth from "@/hooks/useAuth.js";
 export const ProtectedRoute = () => {
-  const { user } = useAuth();
-
-  console.log(user);
+  const { user,loading } = useAuth();
+  if(loading){
+    return <div>Loading...</div>
+  }
   // Check if the user is authenticated
   if (!user) {
     // If not authenticated, redirect to the login page

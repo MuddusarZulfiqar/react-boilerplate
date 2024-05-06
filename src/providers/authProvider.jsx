@@ -1,53 +1,31 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import {createContext, useContext, useMemo, useState} from "react";
+import useAuth from "@/hooks/useAuth";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  // State to hold the authentication token and user data
-  const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem("token");
-    if (storedUser) {
-      return storedUser;
-    }
-    return null;
-  });
+  const auth = useAuth();
+    const [userKey, setUserKey] = useState(0);
 
-  // Function to set the authentication token and user data
-  const updateUser = (userData) => {
-    if (userData) {
-      console.log(userData);
-      setUser(userData.user);
-      localStorage.setItem("token", JSON.stringify(userData?.token));
-    } else {
-      setUser(null);
-      localStorage.removeItem("token");
-    }
-  };
 
-  // useEffect(() => {
-  //   if (user && user.token) {
-  //     localStorage.setItem("token", user.token);
-  //   }
-  // }, [user]);
+    // Force re-render when user changes
+    useMemo(() => {
+        setUserKey(prevKey => prevKey + 1);
+    }, [auth.user]);
 
-  // Memoized value of the authentication context
-  const contextValue = useMemo(
-    () => ({
-      user,
-      setUser,
-      updateUser,
-    }),
-    [user]
-  );
+    console.log(auth.user, "Auth from AuthProvider");
+  const contextValue = useMemo(() => auth, [auth]);
 
   // Provide the authentication context to the children components
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={contextValue}>
+        {children}
+      </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+// Custom hook to consume the authentication context
+// eslint-disable-next-line react-refresh/only-export-components
+export const useAuthContext = () => useContext(AuthContext);
 
-export default AuthProvider;
+export default AuthProvider ;

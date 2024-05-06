@@ -1,21 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/providers/authProvider";
 import request from "@/utils/request";
+import useAuth from "@/hooks/useAuth.js";
+import {useEffect} from "react";
 
 const Logout = () => {
-  const { setUser } = useAuth();
-  const navigate = useNavigate();
+  const { logout } = useAuth();
 
-  const handleLogout = () => {
-    setUser(null);
-    navigate("/auth/login", { replace: true });
-    localStorage.removeItem("token");
-  };
+    const navigate = useNavigate();
 
-  setTimeout(() => {
-    handleLogout();
-  }, 1 * 1000);
-
+  useEffect(() => {
+    logout()
+    navigate('/auth/login')
+  }, [logout]);
   return <>Logout Page</>;
 };
 

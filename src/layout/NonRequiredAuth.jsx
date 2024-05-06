@@ -1,6 +1,6 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
 import * as styles from "./styles/NonRequiredAuth.module.css";
-import { useAuth } from "@/providers/authProvider";
+import useAuth from "@/hooks/useAuth.js";
 function NonRequiredAuth() {
   const { user } = useAuth();
   console.log(user);
@@ -65,7 +65,7 @@ function NonRequiredAuth() {
                 Form
               </NavLink>
             </li>
-            {user?.name ? (
+            {user?._id ? (
               <li>
                 <Link to="dashboard" className={styles.list_item}>
                   Dashboard

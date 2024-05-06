@@ -20,3 +20,17 @@
   .circle {
 	@include circle(100px, #fff);
   }
+
+  #loader{
+	position: fixed;
+	  inset: 0;
+	  background-color: #fff;
+	  z-index: 9999;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  //transition: 0.5s;
+	&.loaded {
+		transform: translateY(-100%);
+	}
+  }

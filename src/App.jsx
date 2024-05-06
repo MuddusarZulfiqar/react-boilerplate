@@ -3,26 +3,18 @@ import {Suspense, useEffect} from "react";
 import {Helmet} from "react-helmet";
 import {config} from "@/constants";
 import {CircularProgress} from "@mui/material";
-import {useQuery} from "@tanstack/react-query";
-import {getMe} from "@/services/user/index.js";
+import useAuth from "@/hooks/useAuth.js";
 
 function App() {
     useEffect(() => {
         document.title = config.APP_NAME;
+        setTimeout(() => {
+            document.querySelector("#loader").classList.add("loaded");
+        }, 2000);
     }, []);
 
-    const {loading, refetch} = useQuery({
-        queryKey: ['user'],
-        queryFn: getMe,
-        enabled: false
-    });
 
 
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            refetch()
-        }
-    }, []);
     return (
         <div className="app">
             <Helmet>
@@ -38,8 +30,8 @@ function App() {
                 {/* META ROBOTS TAG */}
                 <meta name="robots" content="index, follow"/>
             </Helmet>
-            {loading ? (
-                <>
+            <Suspense
+                fallback={
                     <div
                         style={{
                             position: "fixed",
@@ -51,26 +43,10 @@ function App() {
                     >
                         <CircularProgress size="50px"/>
                     </div>
-                </>
-            ) : (
-                <Suspense
-                    fallback={
-                        <div
-                            style={{
-                                position: "fixed",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%,-50%)",
-                                zIndex: 9999,
-                            }}
-                        >
-                            <CircularProgress size="50px"/>
-                        </div>
-                    }
-                >
-                    <Routes/>
-                </Suspense>
-            )}
+                }
+            >
+                <Routes />
+            </Suspense>
         </div>
     );
 }

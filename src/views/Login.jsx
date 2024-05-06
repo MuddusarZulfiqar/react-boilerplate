@@ -2,19 +2,24 @@ import {useNavigate} from "react-router-dom";
 import {Button} from "@mui/material";
 import {useState} from "react";
 import {loginRequest} from "@/services/auth";
-import {QueryClient, useMutation} from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
+
+import useAuth from "@/hooks/useAuth.js";
 // import { useTheme } from "@mui/material/styles";
 
 const Login = () => {
-    const queryClient = new QueryClient();
+    const {
+        login
+    } = useAuth();
     const [userData] = useState({email: "stephen+dev@hellocustom.io", password: "Allah@123"});
     const navigate = useNavigate();
     const {error, isPending, mutate} = useMutation({
         mutationFn: loginRequest,
-        onSuccess: (data) => {
-            localStorage.setItem("token", data?.token);
-            navigate("/dashboard");
-            queryClient.setQueryData(['user'], data)
+    onSuccess: async (data) => {
+            localStorage.setItem('token', data?.token);
+            await login(data?.userInfo);
+
+            window.location.href = "/dashboard/profile"
         },
         onError: (error) => {
             console.error(error);
