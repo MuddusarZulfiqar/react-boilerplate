@@ -1,24 +1,29 @@
+/**
+ * `ProtectedRoute` is a React component that provides a protected route functionality.
+ * It checks if the user is authenticated, if not, it redirects the user to the login page.
+ * If the user is authenticated, it renders the `Dashboard` component.
+ *
+ * @module ProtectedRoute
+ * @returns {JSX.Element} If the user is authenticated, the `Dashboard` component is returned.
+ *                        If the user is not authenticated, a redirection to the login page is returned.
+ */
+
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/providers/authProvider";
 import Dashboard from "@/layout/Dashboard";
+
 export const ProtectedRoute = () => {
+  /**
+   * `useAuth` is a custom hook that provides the current authenticated user.
+   * If no user is authenticated, it returns `null`.
+   */
   const { user } = useAuth();
 
-  console.log(user);
-  // Check if the user is authenticated
+  // If there's no authenticated user, redirect to the login page.
   if (!user) {
-    // If not authenticated, redirect to the login page
     return <Navigate to="/auth/login" />;
   }
 
-  // console.log(element);
-  // Check if the route has a "meta" object with allowed roles
-  // const allowedRoles = route.meta && route.meta.roles;
-
-  // if (allowedRoles && !allowedRoles.includes(user.role)) {
-  //   // User's role is not allowed to access this route; you can redirect to a 403 Forbidden page.
-  //   return <Navigate to="/403" />;
-  // }
-  // If authenticated, render the child routes
+  // If there's an authenticated user, render the `Dashboard` component.
   return <Dashboard />;
 };

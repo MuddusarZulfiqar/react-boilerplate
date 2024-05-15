@@ -9,12 +9,18 @@ import AuthLayout from "@/layout/AuthLayout";
 import NonRequiredAuth from "@/layout/NonRequiredAuth";
 import FormView from "@/views/public/Form";
 import AllowRole from "./AllowRole";
-import Forbidden from "../views/errors/403";
-import PageNotFound from "../views/errors/404";
+import Forbidden from "@/views/errors/403";
+import PageNotFound from "@/views/errors/404";
 
+/**
+ * `Routes` is a React component that manages application routing.
+ * It defines public routes, routes for authenticated users, and routes for non-authenticated users.
+ * It also provides the router configuration using `RouterProvider`.
+ *
+ * @returns {React.Element} A React element.
+ */
 const Routes = () => {
   const { user } = useAuth();
-  console.log(user);
   // Define public routes accessible to all users
   const routesForPublic = [
     {
