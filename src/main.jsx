@@ -14,6 +14,7 @@ import {Provider} from "react-redux";
 import {store} from "@/app/store";
 import AuthProvider from "./providers/authProvider";
 
+
 // React-Query Setup
 import {QueryClient, QueryClientProvider,} from '@tanstack/react-query'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
