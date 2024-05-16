@@ -1,11 +1,13 @@
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import style from "./styles/Dashboard.module.css";
 import { motion } from "framer-motion";
 import { animation } from "@/constants";
+import {Button} from "@mui/material";
+import {useAuth} from "@/providers/AuthProvider.jsx";
 
 function Dashboard() {
   const { pathname } = useLocation();
-
+    const {logout} = useAuth();
   return (
     <main className={style.main}>
       <aside className={style.aside}>
@@ -31,7 +33,7 @@ function Dashboard() {
                 to={{
                   pathname: "/dashboard/profile",
                   state: {
-                    from: "dashboard",
+                    from: "profile",
                   },
                 }}
                 end
@@ -41,17 +43,13 @@ function Dashboard() {
               </NavLink>
             </li>
             <li>
-              <Link
-                to={{
-                  pathname: "/dashboard/logout",
-                  state: {
-                    from: "dashboard",
-                  },
-                }}
-                className={style["nav-list"]}
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={logout}
               >
                 Logout
-              </Link>
+              </Button>
             </li>
           </ul>
         </nav>

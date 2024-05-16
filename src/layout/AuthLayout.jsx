@@ -1,8 +1,13 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import * as styles from "./styles/AuthLayout.module.css";
 import { Button, Typography } from "@mui/material";
+import {useAuth} from "@/providers/AuthProvider.jsx";
+import {useEffect} from "react";
 function AuthLayout() {
   const navigate = useNavigate();
+  const location = useLocation()
+  const {user} = useAuth();
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>

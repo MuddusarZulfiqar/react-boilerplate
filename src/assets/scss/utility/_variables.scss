@@ -46,6 +46,7 @@ $text-color: #1c1c1c;
 $link-color: #ffffff;
 $link-hover: #000000;
 
+
 // Fonts
 
 $primary-font: 'Raleway', sans-serif;
@@ -103,3 +104,7 @@ $breakpoints: (
 	tablet: 991px,
 	wide: 1300px,
 ) !default;
+
+
+
+// create margin classes for 1px to 100px

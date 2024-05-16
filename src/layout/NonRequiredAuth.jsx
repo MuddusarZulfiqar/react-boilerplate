@@ -1,6 +1,6 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
 import * as styles from "./styles/NonRequiredAuth.module.css";
-import useAuth from "@/hooks/useAuth.js";
+import { useAuth } from "@/providers/AuthProvider";
 function NonRequiredAuth() {
   const { user } = useAuth();
   console.log(user);

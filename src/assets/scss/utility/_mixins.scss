@@ -168,6 +168,8 @@
 	align-items:$vcenter;
 	justify-content: $hcenter;
 }
+
+
 @mixin flex-align-center{
 	display:flex;
 	flex-wrap:wrap;
