@@ -6,7 +6,7 @@
  */
 
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../providers/authProvider";
+import { useAuth } from "../providers/AuthProvider.jsx";
 
 /**
  * `AllowRole` is a React component that manages role-based access control in routing.

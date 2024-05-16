@@ -12,7 +12,8 @@ import { theme } from "@/utils";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
-import AuthProvider from "./providers/authProvider";
+import {AuthProvider} from "./providers/AuthProvider.jsx";
+import {HelmetProvider} from "react-helmet-async";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 console.log({ id, phase, actualDuration });
               }}
             >
-              <App />
+              <HelmetProvider>
+                <App />
+              </HelmetProvider>
             </Profiler>
           </AuthProvider>
           <CssBaseline />

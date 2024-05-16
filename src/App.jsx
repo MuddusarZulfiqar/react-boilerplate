@@ -1,41 +1,15 @@
-import { useAuth } from "./providers/authProvider";
 import Routes from "./routes";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { config } from "@/constants";
 import { CircularProgress } from "@mui/material";
 import { Suspense } from "react";
 import request from "./utils/request";
 import Cookies from "js-cookie";
+import {useAuth} from "@/providers/AuthProvider.jsx";
 function App() {
-  const [loading, setLoading] = useState(true);
-  const { setUser } = useAuth();
-  useEffect(() => {
-    document.title = config.APP_NAME;
-  }, []);
+  const {loading} = useAuth();
 
-  const getUser = async () => {
-    try {
-      const response = await request.get("/user/me");
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    if (window) {
-      setLoading(true);
-      if (Cookies.get("token")) {
-        getUser().then((res) => {
-          setUser(res);
-          setLoading(false);
-        });
-      } else {
-        setLoading(false);
-      }
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="app">
       <Helmet>
