@@ -1,11 +1,8 @@
 import Routes from "./routes";
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { config } from "@/constants";
 import { CircularProgress } from "@mui/material";
 import { Suspense } from "react";
-import request from "./utils/request";
-import Cookies from "js-cookie";
 import { useAuth } from "@/providers/AuthProvider.jsx";
 function App() {
   const { loading } = useAuth();

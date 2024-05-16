@@ -14,26 +14,34 @@ import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { AuthProvider } from "./providers/AuthProvider.jsx";
 import { HelmetProvider } from "react-helmet-async";
+
+import {QueryClient, QueryClientProvider,} from '@tanstack/react-query'
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
+
+const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <ErrorBoundary>
-          <AuthProvider>
-            <Profiler
-              id="App"
-              onRender={(id, phase, actualDuration) => {
-                console.log({ id, phase, actualDuration });
-              }}
-            >
-              <HelmetProvider>
-                <App />
-              </HelmetProvider>
-            </Profiler>
-          </AuthProvider>
-          <CssBaseline />
-        </ErrorBoundary>
-      </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            <ErrorBoundary>
+              <AuthProvider>
+                <Profiler
+                  id="App"
+                  onRender={(id, phase, actualDuration) => {
+                    console.log({ id, phase, actualDuration });
+                  }}
+                >
+                  <HelmetProvider>
+                    <App />
+                  </HelmetProvider>
+                </Profiler>
+              </AuthProvider>
+              <CssBaseline />
+            </ErrorBoundary>
+          </ThemeProvider>
+            <ReactQueryDevtools/>
+        </QueryClientProvider>
     </Provider>
     <ToastContainer />
   </React.StrictMode>
