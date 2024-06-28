@@ -6,8 +6,15 @@ import {useEffect} from "react";
 function AuthLayout() {
   const navigate = useNavigate();
   const location = useLocation()
-  const {user} = useAuth();
-
+  const {user,loading} = useAuth();
+    useEffect(() => {
+        if (!loading && user) {
+            navigate(
+                location?.state?.from || "/dashboard",
+                { replace: true }
+            );
+        }
+    }, [user, navigate, location, loading]);
   return (
     <div className={styles.container}>
       <header className={styles.header}>

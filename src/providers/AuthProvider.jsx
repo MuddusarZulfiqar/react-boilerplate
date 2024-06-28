@@ -1,7 +1,9 @@
 // AuthProvider.js
 import { createContext, useContext, useEffect, useState } from 'react';
-import {request} from "../utils/index.js";
-
+import {useQuery,useMutation} from "@tanstack/react-query";
+import {getMe} from "@/services/user/index.js";
+import {loginRequest,logout as handleLogoutRequest} from "@/services/auth/index.js";
+import { useQueryClient } from '@tanstack/react-query'
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -9,6 +11,57 @@ export const AuthProvider = ({ children }) => {
   const [moduleAccess, setModuleAccess] = useState({});
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [requiredUser, setRequiredUser] = useState(false);
+  const queryClient = useQueryClient();
+  if(!loading) console.log('user', user);
+  const {data:userData,isError:getUserError}=useQuery({
+    queryKey: ['me'],
+    queryFn: getMe,
+    enabled: isLoggedIn && requiredUser,
+  });
+
+  const {mutate:handleLogin} = useMutation({
+    mutationFn: ()=>loginRequest({
+      email:'stephen+dev@hellocustom.io',
+      password:'Allah@123'
+    }),
+    onSuccess: (data) => {
+        setIsLoggedIn(true);
+        setUser(data.userInfo);
+        setRequiredUser(false);
+        localStorage.setItem('token',data.token);
+        queryClient.setQueryData(['me'],data.userInfo);
+    },
+  });
+
+  const {mutate:handleLogout} = useMutation({
+    mutationFn: handleLogoutRequest,
+    enabled: false,
+    onSuccess:()=>{
+      setIsLoggedIn(false);
+      setModuleAccess({});
+      setUser(null);
+      localStorage.removeItem('token');
+      queryClient.clear();
+    },
+    onError:()=>{
+      setLoading(false);
+    }
+  });
+
+
+  useEffect(() => {
+    if(userData){
+      setUser(userData);
+      setLoading(false);
+    }
+    if(getUserError){
+      setLoading(false);
+      queryClient.clear();
+    }
+  }, [userData,getUserError,queryClient]);
+
+
   useEffect(() => {
     if(localStorage.getItem('token')){
       checkAuthStatus();
@@ -18,63 +71,16 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const checkAuthStatus = () => {
-    // request.get('/api/check-auth')
-    //     .then(response => {
-    //       if (response.data.loggedIn) {
-    //         setIsLoggedIn(true);
-    //         setModuleAccess(response.data.moduleAccess);
-    //         setUser(response.data.user);
-    //       }
-    //     })
-    //     .catch(error => {
-    //       console.error('Error checking authentication:', error);
-    //     });
-
     setIsLoggedIn(true);
-    setTimeout(() => {
-
-      setUser({
-        name: "John Doe",
-        email: "",
-        role: "admin",
-      });
-      setLoading(false);
-    }, 1000);
+    setRequiredUser(true);
   };
 
-  const login = () => {
-    return new Promise((resolve) => {
-      setUser({
-        name: "John Doe",
-        email: "",
-        role: "admin",
-      });
-        setIsLoggedIn(true);
-        localStorage.setItem('token' , 'tokendfssafadsf');
-      resolve();
-        // request.post('/api/login', user)
-        //     .then(response => {
-        //         if (response.data.loggedIn) {
-        //         setIsLoggedIn(true);
-        //         setModuleAccess(response.data.moduleAccess);
-        //         setUser(response.data.user);
-        //         resolve(response.data);
-        //         } else {
-        //         reject(response.data);
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error logging in:', error);
-        //         reject(error);
-        //     });
-    });
+  const login = async () => {
+    await handleLogin();
   };
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    setModuleAccess({});
-    setUser(null);
-    localStorage.removeItem('token');
+  const logout = async () => {
+    await handleLogout();
   };
 
   return (

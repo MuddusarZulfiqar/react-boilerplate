@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import AuthLayout from "@/layout/AuthLayout";
-import NonRequiredAuth from "@/layout/NonRequiredAuth";
-import FormView from "@/views/public/Form";
-import PageNotFound from "@/views/errors/404";
-import Dashboard from "@/layout/Dashboard.jsx";
-import ProtectedRoute from "./ProtectedRoute";
-
+const AuthLayout = React.lazy(() => import("@/layout/AuthLayout"));
+const FormView = React.lazy(() => import("@/views/public/Form"));
+const PageNotFound =  React.lazy(() => import("@/views/errors/404"));
 const Login = React.lazy(() => import("@/views/Login"));
+const ProtectedRoute = React.lazy(() => import("./ProtectedRoute"));
+import NonRequiredAuth from "@/layout/NonRequiredAuth";
+import Dashboard from "@/layout/Dashboard.jsx";
+import {roles} from "@/utils";
 
 const RoutesApp = () => {
   return (
@@ -29,12 +29,22 @@ const RoutesApp = () => {
             element={
               <ProtectedRoute
                 isLoginRequired={true}
-                roles={["user", "admin"]}
+                roles={[roles.user, roles.admin]}
               />
             }
           >
-            <Route path="" index element={<h1>Dashboard</h1>} />
+
             <Route path="profile" element={<h1>Profile</h1>} />
+          </Route>
+          <Route
+              element={
+                <ProtectedRoute
+                    isLoginRequired={true}
+                />
+              }
+          >
+            <Route path="" index element={<h1>Dashboard</h1>} />
+
           </Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />

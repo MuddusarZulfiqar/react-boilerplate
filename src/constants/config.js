@@ -1,5 +1,5 @@
 const config = {
-    API_URL: "https://dev.hellocustom.io/api/v1/",
+    API_URL: import.meta.env.VITE_BACKEND_URL,
     APP_NAME: "My App",
     APP_DESCRIPTION: "MY APP DESCRIPTION",
     APP_KEYWORDS: "MY APP KEYWORDS",

@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/providers/AuthProvider";
-import request from "@/utils/request";
-import useAuth from "@/hooks/useAuth.js";
+import {useAuth} from "@/providers/AuthProvider.jsx";
 import { useEffect } from "react";
 
 const Logout = () => {
@@ -12,7 +10,7 @@ const Logout = () => {
   useEffect(() => {
     logout();
     navigate("/auth/login");
-  }, [logout]);
+  }, [logout, navigate]);
   return <>Logout Page</>;
 };
 
