@@ -1,58 +1,54 @@
-# React Boilerplate
+# React + TypeScript + Vite
 
-This is a React boilerplate project configured with essential packages to kickstart your development process. It's
-designed to be plug and play, allowing you to focus on building your application without worrying about initial setup.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **Axios**: For making HTTP requests.
-- **Formik**: Form management library for React.
-- **Framer Motion**: An animation library for React.
-- **NProgress**: A lightweight progress bar for indicating activity.
-- **React Helmet**: To manage document head tags.
-- **React Redux**: State management library for React applications.
-- **React Router DOM**: Declarative routing for React applications.
-- **React Toastify**: Notification system for React applications.
-- **Yup**: A schema validation library for JavaScript objects.
-- **@emotion/react**: CSS-in-JS library for styling React components.
-- **@emotion/styled**: Styled components for Emotion.
-- **@mui/icons-material**: Material-UI icons.
-- **@mui/material**: React components for Material Design.
-- **@mui/system**: Utility functions for building MUI components.
-- **@reduxjs/toolkit**: Toolkit for efficient Redux development.
-- **@tanstack/react-query**: Data fetching and caching library for React.
-- **@tanstack/react-query-devtools**: Devtools for React Query.
-- **@vitejs/plugin-react**: Vite plugin for React.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Development Dependencies
+## Expanding the ESLint configuration
 
-- **@types/react**: Type definitions for React.
-- **@types/react-dom**: Type definitions for ReactDOM.
-- **@vitejs/plugin-react**: Vite plugin for React.
-- **ESLint**: JavaScript linter.
-- **ESLint Plugin React**: ESLint rules specific to React.
-- **ESLint Plugin React Hooks**: ESLint plugin for React hooks.
-- **ESLint Plugin React Refresh**: ESLint plugin for React Refresh.
-- **Sass**: CSS preprocessor.
-- **Vite**: Next-generation frontend tooling.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Usage
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-1. Clone this repository.
-2. Install dependencies using `npm install`.
-3. Start the development server with `npm start`.
-4. Build your application with `npm run build`.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## Contributing
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-Contributions are welcome! If you have suggestions or find issues, please feel free to open an issue or submit a pull
-request.
-
-## Note
-
-Right now, this project is in its early stages. I plan to add more features and improve the existing ones in the future.
-And I'm open to suggestions and feedback. To run this application you need node version 16 or higher.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
