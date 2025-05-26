@@ -1,3 +1,5 @@
+// tsconfig.app.json
+
 {
   "compilerOptions": {
     "target": "ESNext",
@@ -13,7 +15,8 @@
     "types": ["node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+   "typeRoots": ["./node_modules/@types", "./src/types"],
   },
-  "include": ["src","src/types"]
+  "include": ["src", "src/**/*.d.ts"]
 }

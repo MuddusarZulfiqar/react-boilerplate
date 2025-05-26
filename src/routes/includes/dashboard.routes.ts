@@ -9,10 +9,10 @@ const dashboardRoutes = {
     Component: DashboardLayout,
     loader: requireAuth(),
     children:[
-    // Routes accessible by both user and admin
+        // Routes accessible by both user and admin
         {
             index: true,
-            Component: UserDashboard
+            Component: UserDashboard,
         },
         // Admin-only routes group
         {

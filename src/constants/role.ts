@@ -14,4 +14,3 @@ export const Role = {
     user: Roles.USER,
     guest: Roles.GUEST,
 } as const
-

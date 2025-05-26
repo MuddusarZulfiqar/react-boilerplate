@@ -6,20 +6,21 @@ import { RoleType } from "./role";
  * @description This module defines the user types used in the application.
  */
 
-export interface User extends Dates {
+export interface User extends Token {
     id: string;
-    name: string;
+    username: string;
     email: string;
-    role: RoleType; // This can be a RoleType if you import it
-    lastLogin?: string; // Optional, ISO date string
-    isActive: boolean; // Indicates if the user account is active
-    profilePictureUrl?: string; // Optional, URL to the user's profile picture
+    firstName: string; // Optional, can be undefined
+    lastName: string; // Optional, can be undefined
+    role?: RoleType; // This can be a RoleType if you import it
+    image?: string; // Optional, URL to the user's profile picture
     // extend the Dates interface to include createdAt and updatedAt
     [key: string]: any; // Allows for additional properties
     // ! This can be useful for dynamic user attributes
 }
 
-interface Dates {
-    createdAt: string; // ISO date string
-    updatedAt: string; // ISO date string
+
+interface Token {
+    accessToken: string; // JWT or similar token
+    refreshToken?: string; // Optional, if your auth system uses refresh tokens
 }

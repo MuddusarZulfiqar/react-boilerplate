@@ -3,10 +3,12 @@ const Login = lazyWithSuspense(() => import('@/pages/auth/Login'))
 const PageNotFound = lazyWithSuspense(() => import('@/pages/error/Auth404'))
 import AuthLayout from '@/layouts/Auth.layout'
 import { redirect } from 'react-router'
+import { nonRequireAuth } from '@/utils'
 
 const authRoutes = {
     path: "/auth",
     Component: AuthLayout,
+    loader: nonRequireAuth(),
     children:[
         {
             index: true,
