@@ -1,11 +1,10 @@
-import { RouterProvider } from 'react-router'
-import { router } from '@/routes'
-import { Toaster } from 'react-hot-toast'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from '@/theme'
-
+import { RouterProvider } from "react-router";
+import { router } from "@/routes";
+import { Toaster } from "react-hot-toast";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "@/theme";
+import "nprogress/nprogress.css";
 function App() {
-
   return (
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
@@ -13,12 +12,12 @@ function App() {
         position="bottom-center"
         // add duration global
         toastOptions={{
-          duration:4000
+          duration: 4000,
         }}
       />
       <CssBaseline />
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

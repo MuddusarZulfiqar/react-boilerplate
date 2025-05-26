@@ -1,5 +1,6 @@
 // src/api/axiosInstance.ts
 import axios from 'axios';
+import nProgress from 'nprogress';
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
@@ -10,12 +11,14 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
+        nProgress.start();
         config.headers['Authorization'] = localStorage.getItem("token")
             ? `Bearer ${localStorage.getItem("token")}`
             : "";
         return config;
     },
     (error) => {
+        nProgress.done();
         // check if error is section timeout
         return Promise.reject(error);
     }
@@ -23,10 +26,11 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     (response) => {
+        nProgress.done();
         return response;
     },
     (error) => {
-        // NProgress.done();
+        nProgress.done();
         if (error?.response?.status === 401) {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
