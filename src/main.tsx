@@ -5,7 +5,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/api";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AuthProvider } from "./context/Auth.context";
-import { RouterProvider } from "react-router";
 import "@/styles/main.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
