@@ -6,14 +6,17 @@ import { queryClient } from "@/api";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AuthProvider } from "./context/Auth.context";
 import "@/styles/main.css";
+import ErrorBoundary from "@/components/core/ErrorBoundary";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <App />
-        {import.meta.env.VITE_APP_ENV === "development" && (
-          <ReactQueryDevtools initialIsOpen={false} />
-        )}
+        <ErrorBoundary>
+          <App />
+          {import.meta.env.VITE_APP_ENV === "development" && (
+            <ReactQueryDevtools initialIsOpen={false} />
+          )}
+        </ErrorBoundary>
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

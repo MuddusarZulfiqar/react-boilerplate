@@ -10,7 +10,11 @@
     --color-white: #ffffff;
     --color-black: #000000;
 }
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .screen-height {
     min-height: 100vh;
 }
