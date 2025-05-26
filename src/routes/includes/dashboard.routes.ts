@@ -1,8 +1,10 @@
 import { Role } from '@/constants'
-import DashboardLayout from '@/layouts/Dashboard.layout'
-import AdminDashboard from '@/pages/dashboard/admin/AdminDashboard'
-import UserDashboard from '@/pages/dashboard/admin/UserDashboard'
 import { requireAuth } from '@/utils/routeGuards'
+import { lazyWithSuspense } from '@/utils/lazyWithSuspense'
+import DashboardLayout from '@/layouts/Dashboard.layout'
+const AdminDashboard = lazyWithSuspense(() => import('@/pages/dashboard/admin/AdminDashboard'));
+const UserDashboard = lazyWithSuspense(() => import('@/pages/dashboard/user/UserDashboard'));
+const NotFound = lazyWithSuspense(() => import('@/pages/dashboard/error/NotFound'));
 
 const dashboardRoutes = {
     path: "dashboard",
@@ -24,6 +26,10 @@ const dashboardRoutes = {
                     Component: AdminDashboard
                 },
             ]
+        },
+        {
+            path:"*",
+            Component: NotFound
         }
     ]
 

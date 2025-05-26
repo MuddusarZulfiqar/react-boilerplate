@@ -99,6 +99,7 @@ const LoginPage: React.FC = () => {
             <Button
               type="submit"
               variant="contained"
+              color="secondary"
               fullWidth
               size="large"
               disabled={isSubmitting}

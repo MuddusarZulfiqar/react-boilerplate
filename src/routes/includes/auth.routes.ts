@@ -1,6 +1,6 @@
 import { lazyWithSuspense } from '@/utils/lazyWithSuspense'
 const Login = lazyWithSuspense(() => import('@/pages/auth/Login'))
-const PageNotFound = lazyWithSuspense(() => import('@/pages/error/Auth404'))
+const PageNotFound = lazyWithSuspense(() => import('@/pages/error/PageNotFound'))
 import AuthLayout from '@/layouts/Auth.layout'
 import { redirect } from 'react-router'
 import { nonRequireAuth } from '@/utils'

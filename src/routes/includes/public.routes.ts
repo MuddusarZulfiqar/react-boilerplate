@@ -1,6 +1,8 @@
 import PublicLayout from '@/layouts/Public.layout'
 import { lazyWithSuspense } from '@/utils/lazyWithSuspense'
 const Home = lazyWithSuspense(() => import('@/pages/Home'))
+const About = lazyWithSuspense(() => import('@/pages/About'))
+const PageNotFound = lazyWithSuspense(() => import('@/pages/error/PageNotFound'))
 const publicRoute = {
     path: "/",
     Component: PublicLayout,
@@ -8,6 +10,14 @@ const publicRoute = {
         {
             index: true,
             Component: Home
+        },
+        {
+            path:'about',
+            Component: About
+        },
+        {
+            path:'*',
+            Component: PageNotFound
         }
     ]
 

@@ -1,15 +1,5 @@
-import CustomButton from "@/components/Button"
-import Button  from "@mui/material/Button"
-
 function HomeView() {
-  return (
-    <div>
-      Home
-      <Button variant="contained">
-        Gradient Button
-      </Button>
-    </div>
-  )
+  return <div>Home</div>;
 }
 
-export default HomeView
+export default HomeView;
