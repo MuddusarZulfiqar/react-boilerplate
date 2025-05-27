@@ -5,40 +5,38 @@ import {
   TextField,
   InputAdornment,
   IconButton,
-} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useState } from 'react';
-import { Formik, Form, FormikHelpers } from 'formik';
-import { LoginFormValues } from '@/types/form';
-import { loginSchema } from '@/validations';
-import { useAuth } from '@/hooks/useAuth';
-import { useNavigate } from 'react-router';
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useState } from "react";
+import { Formik, Form, FormikHelpers } from "formik";
+import { LoginFormValues } from "@/types/form";
+import { loginSchema } from "@/validations";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
 
 // Define the shape of form values
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const {login} = useAuth();
+  const { login } = useAuth();
   const initialValues: LoginFormValues = {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   };
 
-  const handleSubmit = async(
+  const handleSubmit = async (
     values: LoginFormValues,
     { setSubmitting }: FormikHelpers<LoginFormValues>
   ) => {
     try {
-      console.log('Submitted values:', values);
+      console.log("Submitted values:", values);
       // Call your API here
       await login(values);
-      navigate('/dashboard',{
-        replace: true, // Replace the current entry in the history stack
-        state: { from: '/auth/login' } // Optional: pass state to the next route
-      }); // Redirect to dashboard on success
+      const redirectTo = searchParams.get("redirectTo") || "/dashboard";
+      navigate(redirectTo, { replace: true });
     } catch (error) {
-
     } finally {
       setSubmitting(false);
     }
@@ -76,7 +74,7 @@ const LoginPage: React.FC = () => {
               fullWidth
               label="Password"
               name="password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}

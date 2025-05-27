@@ -3,34 +3,43 @@ import { redirect } from 'react-router'
 import { RoleType } from '@/types'
 import { Role } from '@/constants'
 
-
 interface RequireAuthOptions {
   allowedRoles?: RoleType[]
 }
 
-
+// Used in protected routes
 export function requireAuth(options?: RequireAuthOptions) {
-  return () => {
-    const userJson = localStorage.getItem('token')
-    if (!userJson) return redirect('/auth/login')
-    // Assuming userJson is a JSON string that contains user data
-    let currentRole = sessionStorage.getItem('role') as RoleType;
-    if (options?.allowedRoles && !options.allowedRoles.includes(currentRole)) {
-      return redirect('/dashboard/unauthorized') // make sure this route exists
+  return async ({ request }: { request: Request }) => {
+    const token = localStorage.getItem('token')
+    const role = sessionStorage.getItem('role') as RoleType
+
+    const url = new URL(request.url)
+    const pathname = url.pathname
+
+    if (!token) {
+      // Redirect to login and preserve the original destination
+      return redirect(`/auth/login?redirectTo=${pathname}`)
     }
 
-    return null
+    if (options?.allowedRoles && !options.allowedRoles.includes(role)) {
+      return redirect('/dashboard/unauthorized')
+    }
+
+    return null // allow access
   }
 }
 
-
+// Used on /auth/login, etc., to redirect logged-in users
 export function nonRequireAuth() {
-  return () => {
-    const userJson = !!localStorage.getItem('token')
+  return async ({ request }: { request: Request }) => {
+    const token = localStorage.getItem('token')
 
-    if (userJson) {
-      return redirect('/dashboard') // Redirect to dashboard if user is already logged in
+    if (token) {
+      const url = new URL(request.url)
+      const redirectTo = url.searchParams.get('redirectTo') || '/dashboard'
+      return redirect(redirectTo)
     }
+
     return null
   }
 }
