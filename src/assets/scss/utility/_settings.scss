@@ -1,0 +1,9 @@
+$breakpoints: (
+	mobile: 414px,
+	tablet: 991px,
+	wide: 1300px,
+) !default;
+
+$em-media-queries: true;
+$negative: 1px;
+

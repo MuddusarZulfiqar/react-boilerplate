@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "@/theme";
 import "nprogress/nprogress.css";
+import "@/assets/scss/styles.scss";
 function App() {
   return (
     <ThemeProvider theme={theme}>

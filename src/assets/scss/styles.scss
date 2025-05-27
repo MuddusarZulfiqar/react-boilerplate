@@ -1,0 +1,48 @@
+@use 'utility/index' as *;
+@use 'base/base' as *;
+@use 'core/index' as *; // if you created a core/_index.scss with @forward
+@use 'common/common' as *;
+
+.Toastify .Toastify__toast div:first-child div:last-child {
+	text-align: left;
+  }
+  
+  .active-item {
+	background-color: #646cff;
+	color: #f1f1f1;
+	&:hover{
+	  background-color: #646cff;
+	  color: #f1f1f1;
+	}
+  }
+  
+  body, html {
+	overflow-x: hidden !important;
+  }
+
+  .circle {
+	@include circle(100px, #fff);
+  }
+
+  #loader{
+	position: fixed;
+	  inset: 0;
+	  background-color: #fff;
+	  z-index: 9999;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  //transition: 0.5s;
+	&.loaded {
+		transform: translateY(-100%);
+	}
+  }
+
+
+  .button {
+  font-size: 16px;
+
+  @include flex('center')
+}
+
+

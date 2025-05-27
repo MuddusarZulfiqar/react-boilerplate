@@ -1,0 +1,106 @@
+@use 'functions' as fn;
+
+// @font-face {
+// 	font-family: 'fontinregular';
+// 	src: url('../fonts/fontin/fontin-regular-webfont.woff2') format('woff2'),
+// 		url('../fonts/fontin/fontin-regular-webfont.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'fontinbold';
+// 	src: url('../fonts/fontin/fontin-bold-webfont.woff2') format('woff2'),
+// 		url('../fonts/fontin/fontin-bold-webfont.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'fontinitalic';
+// 	src: url('../fonts/fontin-italic-webfont.woff2') format('woff2'),
+// 		url('../fonts/fontin-italic-webfont.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+
+// @font-face {
+// 	font-family: 'helveticaneueltarabic';
+// 	src: url('../fonts/helvatic-arabic-new/helveticaneueltarabic.eot');
+// 	src: url('../fonts/helvatic-arabic-new/helveticaneueltarabic.eot')
+// 			format('embedded-opentype'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.woff2')
+// 			format('woff2'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.woff')
+// 			format('woff'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.ttf')
+// 			format('truetype'),
+// 		url('../fonts/helvatic-arabic-new/helveticaneueltarabic.svg#helveticaneueltarabic')
+// 			format('svg');
+// }
+
+// Theme Colors
+
+$default: #303030;
+$primary: #1c5a84;
+$secondary: #0082ff;
+$text-color: #1c1c1c;
+$link-color: #ffffff;
+$link-hover: #000000;
+
+
+// Fonts
+
+$primary-font: 'Raleway', sans-serif;
+$primary-font-b: 'Raleway', sans-serif;
+$time-new-roman: 'Times New Roman', 'serif';
+$arabic-font: '';
+
+//** Primary Font
+
+// font sizes
+$h--1: (
+	base: fn.rem(24px),
+	mobile: fn.rem(20px),
+	tablet: fn.rem(22px),
+	wide: fn.rem(24px),
+);
+$h--2: (
+	base: fn.rem(35px),
+	mobile: fn.rem(18px),
+	tablet: fn.rem(20px),
+	wide: fn.rem(35px),
+);
+$h--3: (
+	base: fn.rem(24px),
+	mobile: fn.rem(16px),
+	tablet: fn.rem(18px),
+	wide: fn.rem(18px),
+);
+
+$h--4: (
+	base: fn.rem(16px),
+	mobile: fn.rem(14px),
+	tablet: fn.rem(15px),
+	wide: fn.rem(16px),
+);
+$h--5: (
+	base: fn.rem(24px),
+	mobile: fn.rem(20px),
+	tablet: fn.rem(22px),
+	wide: fn.rem(24px),
+);
+$h--6: (
+	base: fn.rem(24px),
+	mobile: fn.rem(20px),
+	tablet: fn.rem(22px),
+	wide: fn.rem(24px),
+);
+
+$p: fn.rem(16px);
+$p--large: fn.rem(20px);
+$p--medium: fn.rem(16px);
+$p--small: fn.rem(12px);
+
+
+
+
+// create margin classes for 1px to 100px

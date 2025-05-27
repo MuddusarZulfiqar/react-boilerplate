@@ -1,0 +1,30 @@
+@use '../utility/functions' as fn;
+@use '../utility/variables' as var;
+
+:root{
+    --primary: #003160;
+    --secondary: #0082ff;
+    --lightblue: #256089;
+    --textcolor: #515151;
+    --bg: #f2f7ff;
+}
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: fn.rem(16px);
+    font-family: var.$primary-font;
+    color: var(--textcolor);
+    line-height: 1;
+    margin: 0;
+    overflow-x: hidden;
+    font-weight: 400;
+}
+
+
+@media screen and (max-width: 991px) {
+    html {
+        font-size: 80%;
+    }
+}

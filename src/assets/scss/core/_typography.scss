@@ -1,0 +1,120 @@
+@use '../utility/variables' as var;
+@use '../utility/functions' as fn;
+@use '../utility/mixins' as mixins;
+/*
+
+	Basic, low level typography
+
+*/
+a {
+	color: var.$primary;
+    transition: all 0.5s ease;
+	// &:hover {
+	// 	color: $secondary !important;
+	// }
+	// &:focus {
+	// 	outline: none;
+	// }
+}
+$typography-elems: 'ul', 'ol';
+
+$media-elems: '.blockquote', '.button-wrapper', '.media', '.table-wrapper';
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-family: var.$primary-font-b;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	margin-top: 1rem;
+	line-height: 1;
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+h1 {
+	color: var(--primary);
+	margin-bottom: unset;
+	@include mixins.font-size(var.$h--1);
+}
+
+h2 {
+	color: var(--primary);
+	margin-bottom: unset;
+	font-weight: bold;
+	@include mixins.font-size(var.$h--2);
+}
+
+h3 {
+	font-weight: 600;
+	@include mixins.font-size(var.$h--3);
+}
+
+h4 {
+	font-weight: 700;
+	@include mixins.font-size(var.$h--4);
+}
+
+h5 {
+	@include mixins.font-size(var.$h--5);
+}
+
+h6 {
+	margin-bottom: fn.rem(30px);
+	@include mixins.font-size(var.$h--6);
+}
+
+p {
+	font-size: var.$p;
+	margin: 0 0 fn.rem(20px) 0;
+	line-height: 1.5;
+	font-family: var.$primary-font;
+}
+
+// Basic typography styling
+#{$typography-elems},
+#{$media-elems} {
+	margin-bottom: 1rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+ol,
+ul {
+	padding: 0;
+	margin: 0;
+	// list-style:none;
+}
+
+// Stylistic elements
+b,
+strong {
+	font-weight: 700;
+}
+
+.text-primary{
+    color: var(--primary) !important;
+}
+.text-primary-light{
+    color: #1c5a84 !important;
+}
+.text-secondary{
+    color: var(--secondary) !important;
+}
+.text-gray{
+    color: #575757 !important;
+}
