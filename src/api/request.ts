@@ -1,8 +1,11 @@
 // src/api/axiosInstance.ts
+import {settings} from '@/constants';
 import axios from 'axios';
 import nProgress from 'nprogress';
+
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: settings.apiWaitTime, // 8 seconds
   headers: {
     'Content-Type': 'application/json',
   },
