@@ -1,5 +1,5 @@
 import PublicLayout from '@/layouts/Public.layout'
-import { lazyWithSuspense } from '@/utils/lazyWithSuspense'
+import { lazyWithSuspense } from '@/utils'
 const Home = lazyWithSuspense(() => import('@/pages/Home'))
 const About = lazyWithSuspense(() => import('@/pages/About'))
 const PageNotFound = lazyWithSuspense(() => import('@/pages/error/PageNotFound'))

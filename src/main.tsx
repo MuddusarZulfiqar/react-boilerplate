@@ -7,17 +7,22 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AuthProvider } from "./context/Auth.context";
 import "@/styles/main.css";
 import ErrorBoundary from "@/components/core/ErrorBoundary";
+import ReduxProviderWrapper from "./context/Redux.Provider";
+
+// settings.requireRedux
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ErrorBoundary>
-          <App />
-          {import.meta.env.VITE_APP_ENV === "development" && (
-            <ReactQueryDevtools initialIsOpen={false} />
-          )}
-        </ErrorBoundary>
-      </AuthProvider>
+      <ReduxProviderWrapper>
+        <AuthProvider>
+          <ErrorBoundary>
+            <App />
+            {import.meta.env.VITE_APP_ENV === "development" && (
+              <ReactQueryDevtools initialIsOpen={false} />
+            )}
+          </ErrorBoundary>
+        </AuthProvider>
+      </ReduxProviderWrapper>
     </QueryClientProvider>
   </StrictMode>
 );

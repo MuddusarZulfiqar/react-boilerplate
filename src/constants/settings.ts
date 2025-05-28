@@ -1,8 +1,8 @@
 import { Settings } from "@/types";
 
 export const settings:Settings = {
-    appName: 'MyApp',
+    appName: 'React Boilerplate',
     version: '1.0.0',
-    favIcon: '/favicon.ico',
     apiWaitTime: 8000, // 5 seconds
+    requireRedux: false,
 } as const;

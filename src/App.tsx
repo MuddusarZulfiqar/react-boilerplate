@@ -5,7 +5,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "@/theme";
 import "nprogress/nprogress.css";
 import "@/assets/scss/styles.scss";
+import usePageTitle from "./hooks/usePageTitle";
 function App() {
+  usePageTitle();
   return (
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />

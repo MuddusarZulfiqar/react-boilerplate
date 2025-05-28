@@ -1,11 +1,17 @@
+import { RootState } from '@/types/store';
 import { useSelector } from 'react-redux';
-import type { RootState } from '@/store';
+import { settings } from '@/constants';
 
 /**
- * Typed version of `useSelector` for Redux.
- * Ensures selected state matches the shape of your store.
- *
- * @example
- * const user = useAppSelector(state => state.auth.user);
+ * Safe version of `useSelector` that returns `undefined` if Redux is disabled.
  */
-export const useAppSelector = useSelector.withTypes<RootState>();
+export const useAppSelector = <TSelected>(
+  selector: (state: RootState) => TSelected
+): TSelected | undefined => {
+  if (!settings.requireRedux) {
+    console.warn('Redux is disabled: selector skipped');
+    return undefined;
+  }
+
+  return useSelector(selector);
+};

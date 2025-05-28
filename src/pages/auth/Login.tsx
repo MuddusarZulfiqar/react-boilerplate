@@ -13,10 +13,12 @@ import { LoginFormValues } from "@/types/form";
 import { loginSchema } from "@/validations";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation, useNavigate, useSearchParams } from "react-router";
+import usePageTitle from "@/hooks/usePageTitle";
 
 // Define the shape of form values
 
 const LoginPage: React.FC = () => {
+  usePageTitle("Login");
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [showPassword, setShowPassword] = useState<boolean>(false);

@@ -6,7 +6,8 @@ import { loginRequest } from "@/api/services/login.service";
 import { LoginFormValues } from "@/types/form";
 import toast from "react-hot-toast";
 import { getCurrentUser } from "@/api/services/user.service";
-
+import { useAppDispatch } from "@/hooks";
+import { loginUser, logoutUser } from "@/store/slices/authSlice";
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined
 );
@@ -17,6 +18,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [user, setUser] = useState<User | null>(null);
   const enabled = localStorage.getItem("token"); // Fetch user only if not logged in
   const queryClient = useQueryClient();
+  const dispatch = useAppDispatch();
 
   // Fetch current user on mount
   const { isLoading, data } = useQuery({
@@ -51,6 +53,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     sessionStorage.removeItem("role"); // Clear user role from session storage
     toast.success("Logged out successfully");
+    dispatch(logoutUser()); // Dispatch logout action to update Redux state
     setTimeout(() => {
       setUser(null);
       queryClient.clear();
@@ -61,6 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     if (data) {
       setUser(data);
+      dispatch(loginUser(data)); // Dispatch login action to update Redux state
       if (data.role) {
         sessionStorage.setItem("role", data.role); // Store user role in session storage
       }

@@ -1,6 +1,6 @@
 import { Role } from '@/constants'
-import { requireAuth } from '@/utils/routeGuards'
-import { lazyWithSuspense } from '@/utils/lazyWithSuspense'
+import { requireAuth } from '@/utils'
+import { lazyWithSuspense } from '@/utils'
 import DashboardLayout from '@/layouts/Dashboard.layout'
 const AdminDashboard = lazyWithSuspense(() => import('@/pages/dashboard/admin/AdminDashboard'));
 const UserDashboard = lazyWithSuspense(() => import('@/pages/dashboard/user/UserDashboard'));

@@ -1,4 +1,4 @@
-import { lazyWithSuspense } from '@/utils/lazyWithSuspense'
+import { lazyWithSuspense } from '@/utils'
 const Login = lazyWithSuspense(() => import('@/pages/auth/Login'))
 const PageNotFound = lazyWithSuspense(() => import('@/pages/error/PageNotFound'))
 import AuthLayout from '@/layouts/Auth.layout'

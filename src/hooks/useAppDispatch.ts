@@ -1,14 +1,17 @@
+import { AppDispatch } from '@/types/store';
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '@/store';
+import { settings } from '@/constants';
 
 /**
- * Typed version of `useDispatch` for Redux.
- * Ensures the dispatch function supports thunk and async actions.
- *
- * @returns The Redux `dispatch` function with correct typing
- *
- * @example
- * const dispatch = useAppDispatch();
- * dispatch(fetchUser());
+ * Safe version of `useDispatch` that returns a no-op dispatch if Redux is disabled.
  */
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppDispatch = () => {
+  if (!settings.requireRedux) {
+    // Return a no-op function to avoid crashes
+    return (() => {
+      console.warn('Redux is disabled: dispatch ignored');
+    }) as AppDispatch;
+  }
+
+  return useDispatch<AppDispatch>();
+};
