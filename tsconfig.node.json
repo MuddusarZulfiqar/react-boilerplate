@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
     "composite": true,
-    "module": "Node16",             // ✅ FIXED
-    "moduleResolution": "node16",   // ✅ FIXED
-    "types": ["node"]
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "types": [
+      "node"
+    ]
   },
-  "include": ["vite.config.ts"]
+  "include": [
+    "vite.config.ts"
+  ]
 }
