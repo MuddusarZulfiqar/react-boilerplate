@@ -43,7 +43,7 @@ A modern and scalable boilerplate for building high-performance React applicatio
 ├── public/
 ├── src/
 │ ├── assets/ # Static files (images, fonts)
-  ├── api/ # API calls via Axios or other clients
+│ ├── api/ # API calls via Axios or other clients
 │ ├── components/ # Shared reusable components
 │ ├── constents/ # App-wide constants and Redux slices or feature modules
 │ ├── context/ # React Context providers and consumers
@@ -52,11 +52,11 @@ A modern and scalable boilerplate for building high-performance React applicatio
 │ ├── pages/  # Route-level page components
 │ ├── routes/ # React Router route definitions
 │ ├── store/ # Redux store setup and slices
-  ├── styles/ # Global or modular styles (CSS/SCSS)
-  ├── theme/ # MUI theme configuration
-  ├── types/ # TypeScript types and interfaces
-  ├── utils/ # Utility functions and helpers
-  ├── validations/ # Form validation schemas (e.g. Yup)
+│ ├── styles/ # Global or modular styles (CSS/SCSS)
+│ ├── theme/ # MUI theme configuration
+│ ├── types/ # TypeScript types and interfaces
+│ ├── utils/ # Utility functions and helpers
+│ ├── validations/ # Form validation schemas (e.g. Yup)
 │ ├── App.tsx # Root component
 │ └── main.tsx # App entry point
 ├── .eslintrc.js
