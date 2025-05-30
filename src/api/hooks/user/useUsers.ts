@@ -4,7 +4,7 @@ import { fetchUsers } from '@/api/services/user.service';
 
 export function useUsers() {
   return useQuery({
-    queryKey:['users'],
+    queryKey:['users',],
     queryFn:fetchUsers,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

@@ -37,7 +37,7 @@
 			padding: fun.rem(28px) 5px;
 			font-size: fun.rem(18px);
 			font-weight: 600;
-			color: var--(textcolor);
+			color: var(--textcolor);
 			vertical-align: middle;
 			text-align: center;
 			text-transform: capitalize;
@@ -128,13 +128,15 @@
 					font-size: fun.rem(15px);
 					content: attr(data-label);
 					display: table-cell;
-					width: 35%;
+					width: 30%;
 					border-right: solid 2px #dee2e6;
 					vertical-align: middle;
 					padding: fun.rem(15px) fun.rem(10px);
 					margin-right: fun.rem(15px);
 					line-height: 1.3;
 					text-transform: uppercase;
+					text-align: left;
+					word-break: break-all;
 				}
 				&:nth-last-child(2) {
 					padding: 0;

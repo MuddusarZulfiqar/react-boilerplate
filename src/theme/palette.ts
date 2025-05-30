@@ -9,7 +9,7 @@ const palette: PaletteOptions = {
     main: '#9c27b0',
   },
   background: {
-    default: '#f4f6f8',
+    default: '#f4f6f8', 
   },
 };
 

@@ -6,6 +6,7 @@ export const apiRoutes = {
       refresh: '/auth/refresh',
     },
     users: {
+      all: '/users',
       me: '/users/me',
       detail: '/users/:id', // dynamic param
       orders: '/users/:userId/orders/:orderId',

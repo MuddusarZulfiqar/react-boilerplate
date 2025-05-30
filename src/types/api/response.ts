@@ -4,6 +4,8 @@
  * @description This module defines the structure of API responses used in the application.
  */
 
+import { User } from "../auth";
+
 export interface ApiResponse<T = any> {
     success: boolean;
     data: T;
@@ -17,7 +19,7 @@ export interface ApiResponse<T = any> {
  */
 
 export interface PaginatedResponse<T> {
-    data: T[];
+    [key: string]: T[] | number | string; // Allows for additional properties
     total: number;
     page: number;
     limit: number;
@@ -32,3 +34,8 @@ export interface ErrorResponse {
     };
 }
 
+
+
+
+
+  
