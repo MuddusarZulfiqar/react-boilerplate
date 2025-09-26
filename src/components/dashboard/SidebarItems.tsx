@@ -1,7 +1,6 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { NavLink } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
-import { sidebarItems } from "@/constants/sidebar";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSidebar } from "@/hooks/useSidebar";
 import { RoleType } from "@/types";

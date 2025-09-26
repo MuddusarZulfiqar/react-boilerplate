@@ -10,9 +10,11 @@ const PublicHeader = () => {
   const { user } = useAuth();
 
   // Only access Redux data if it's enabled
-  const data = settings.requireRedux
-    ? useAppSelector((state) => state.auth)
-    : undefined;
+  // Always call the hook
+  const authData = useAppSelector((state) => state.auth);
+
+  // Conditionally use it
+  const data = settings.requireRedux ? authData : undefined;
 
   return (
     <AppBar position="static" color="primary" elevation={0}>

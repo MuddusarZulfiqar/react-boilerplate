@@ -12,7 +12,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { LoginFormValues } from "@/types/form";
 import { loginSchema } from "@/validations";
 import { useAuth } from "@/hooks/useAuth";
-import { useLocation, useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import usePageTitle from "@/hooks/usePageTitle";
 
 // Define the shape of form values
@@ -38,6 +38,8 @@ const LoginPage: React.FC = () => {
       const redirectTo = searchParams.get("redirectTo") || "/dashboard";
       navigate(redirectTo, { replace: true });
     } catch (error) {
+      // Handle errors here (e.g., show a notification)
+      console.error("Login error:", error);
     } finally {
       setSubmitting(false);
     }

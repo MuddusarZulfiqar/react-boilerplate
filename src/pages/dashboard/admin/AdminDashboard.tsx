@@ -1,16 +1,12 @@
 import { useUsers } from "@/api/hooks/user/useUsers";
-import { useAuth } from "@/hooks";
 import usePageTitle from "@/hooks/usePageTitle";
-import { User } from "@/types";
 import { CircularProgress } from "@mui/material";
-import React from "react";
 
 function AdminDashboard() {
   usePageTitle("Admin Dashboard");
 
-  const { user } = useAuth();
   const users = useUsers();
-  const { data, isLoading, isError } = users;
+  const { data, isLoading } = users;
 
   console.log("Users:", data);
   if (isLoading) {

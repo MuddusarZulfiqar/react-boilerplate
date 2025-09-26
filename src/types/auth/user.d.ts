@@ -15,7 +15,7 @@ export interface User extends Token {
     role?: RoleType; // This can be a RoleType if you import it
     image?: string; // Optional, URL to the user's profile picture
     // extend the Dates interface to include createdAt and updatedAt
-    [key: string]: any; // Allows for additional properties
+    [key: string]: unknown; // Allows for additional properties
     // ! This can be useful for dynamic user attributes
 }
 

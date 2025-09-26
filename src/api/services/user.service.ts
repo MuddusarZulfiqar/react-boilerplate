@@ -1,7 +1,6 @@
-import { ApiResponse } from '@/types';
 import { buildRoute } from '@/utils/routeBuilder';
 import { axiosInstance } from '@/api';
-import type { PaginatedResponse, User, UserResponse } from '@/types';
+import type { User, UserResponse } from '@/types';
 import { apiRoutes } from '@/routes/api.routes';
 import type { AxiosResponse } from 'axios';
 import { AuthRoute, UserRoute } from '@/types/api/apiRoutes';

@@ -1,4 +1,3 @@
-import { ApiResponse } from '@/types';
 import { buildRoute } from '@/utils/routeBuilder';
 import { axiosInstance } from '@/api';
 import type { User } from '@/types';
@@ -14,7 +13,6 @@ export function loginRequest(data:LoginFormValues) {
   return axiosInstance
     .post<User>(route,data)
     .then((res: AxiosResponse<User>) => {
-      console.log('Login response:', res);
       if (!res) {
         throw new Error(res || 'API returned unsuccessful response');
       }

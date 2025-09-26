@@ -1,5 +1,5 @@
 // src/components/ErrorBoundary.tsx
-import { Component, ErrorInfo, ReactNode } from "react";
+import { Component, ErrorInfo } from "react";
 import { Box, Button, Typography, Container, Card } from "@mui/material";
 import { motion } from "framer-motion";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";

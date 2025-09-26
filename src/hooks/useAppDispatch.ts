@@ -2,16 +2,16 @@ import { AppDispatch } from '@/types/store';
 import { useDispatch } from 'react-redux';
 import { settings } from '@/constants';
 
-/**
- * Safe version of `useDispatch` that returns a no-op dispatch if Redux is disabled.
- */
 export const useAppDispatch = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   if (!settings.requireRedux) {
-    // Return a no-op function to avoid crashes
-    return (() => {
-      console.warn('Redux is disabled: dispatch ignored');
+    // Return a wrapper that ignores dispatch
+    return ((..._args: unknown[]) => {
+      console.warn('Redux is disabled: dispatch ignored', ..._args);
+      return undefined as unknown as AppDispatch;
     }) as AppDispatch;
   }
 
-  return useDispatch<AppDispatch>();
+  return dispatch;
 };
