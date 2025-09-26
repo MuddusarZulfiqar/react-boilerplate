@@ -30,7 +30,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const { mutateAsync: loginMutate } = useMutation({
     mutationFn: (payload: LoginFormValues) => loginRequest(payload),
     onSuccess: (data) => {
-      console.log("Login successful:", data);
       setUser(data);
       localStorage.setItem("token", data.accessToken); // Assuming the token is part of the user object
       queryClient.invalidateQueries({
@@ -51,7 +50,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const logout = () => {
     localStorage.removeItem("token");
 
-    sessionStorage.removeItem("role"); // Clear user role from session storage
     toast.success("Logged out successfully");
     dispatch(logoutUser()); // Dispatch logout action to update Redux state
     setTimeout(() => {
@@ -65,9 +63,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (data) {
       setUser(data);
       dispatch(loginUser(data)); // Dispatch login action to update Redux state
-      if (data.role) {
-        sessionStorage.setItem("role", data.role); // Store user role in session storage
-      }
     }
   }, [data]);
 

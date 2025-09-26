@@ -24,8 +24,8 @@ const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { login } = useAuth();
   const initialValues: LoginFormValues = {
-    username: "",
-    password: "",
+    username: "emilys",
+    password: "emilyspass",
   };
 
   const handleSubmit = async (
@@ -33,7 +33,6 @@ const LoginPage: React.FC = () => {
     { setSubmitting }: FormikHelpers<LoginFormValues>
   ) => {
     try {
-      console.log("Submitted values:", values);
       // Call your API here
       await login(values);
       const redirectTo = searchParams.get("redirectTo") || "/dashboard";

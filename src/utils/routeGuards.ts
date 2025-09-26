@@ -2,6 +2,9 @@
 import { redirect } from 'react-router'
 import { RoleType } from '@/types'
 import { Role } from '@/constants'
+import { useAuth } from '@/hooks'
+import { store } from "@/store";
+
 
 interface RequireAuthOptions {
   allowedRoles?: RoleType[]
@@ -10,8 +13,10 @@ interface RequireAuthOptions {
 // Used in protected routes
 export function requireAuth(options?: RequireAuthOptions) {
   return async ({ request }: { request: Request }) => {
+    const state = store.getState(); // ✅ access Redux state
+
     const token = localStorage.getItem('token')
-    const role = sessionStorage.getItem('role') as RoleType
+    const role = state.auth.user?.role as RoleType
 
     const url = new URL(request.url)
     const pathname = url.pathname
